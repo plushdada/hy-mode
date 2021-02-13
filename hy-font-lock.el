@@ -435,6 +435,22 @@
    '(0 font-lock-function-name-face))
   "Hylight tag macros, ie. `#tag-macro', so they stand out.")
 
+(defconst hy-font-lock--bracket-string-delimiters
+  (list
+   (rx
+    (group-n 1
+	     "#["
+	     (group-n 2 (zero-or-more (not ?\[)))
+	     ?\[)
+    (group-n 3 (* (not (| ?\[ ?\]))))
+    (group-n 4
+	     ?\]
+	     (backref 2)
+	     ?\]))
+   '(1 font-lock-comment-face)
+   '(4 font-lock-comment-face))
+  "Highlight the bracket-string delimiters.")
+
 ;;;; Misc
 
 (defconst hy-font-lock--kwds-anonymous-funcs
@@ -603,6 +619,7 @@ applied with success to `ielm'."
         hy-font-lock--kwds-tag-macros
         hy-font-lock--kwds-unpacking
         hy-font-lock--kwds-variables
+	hy-font-lock--bracket-string-delimiters
 
         ;; Advanced kwds
         hy-font-lock--kwds-tag-comment-prefix
