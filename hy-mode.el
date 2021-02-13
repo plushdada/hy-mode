@@ -142,8 +142,8 @@ and determined by `font-lock-mode' internals when making an edit to a buffer."
       (let ((a (match-beginning 1))
             (b (match-end 1))
             (string-fence (string-to-syntax "|")))
-        (put-text-property (1- a) a 'syntax-table string-fence)
-        (put-text-property b (1+ b) 'syntax-table string-fence)))))
+        (put-text-property a (1+ a) 'syntax-table string-fence)
+        (put-text-property (1- b) b 'syntax-table string-fence)))))
 
 ;;; Indentation
 ;;;; Normal Indent
